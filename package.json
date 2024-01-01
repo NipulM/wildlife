@@ -1,0 +1,15 @@
+{
+  "name": "wildlife-sl",
+  "version": "1.0.0",
+  "description": "Wildlife in Sri Lanka",
+  "default": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist --no-scope-hoist"
+  },
+  "author": "Nipul Mallikarachchi",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}
