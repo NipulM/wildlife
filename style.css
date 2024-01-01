@@ -89,14 +89,19 @@ body {
   width: 100%;
 }
 
+.hero-responsive {
+  display: none;
+}
+
 .centered-text {
   position: absolute;
-  top: 5%;
+  width: 100%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #e7e2e2;
   padding: 10px 20px;
-  font-size: 30px;
+  font-size: 32px;
   text-align: center;
   background-color: rgba(106, 97, 97, 0.5);
 }
@@ -153,6 +158,10 @@ body {
   text-align: center;
 }
 
+.section-1-fh {
+  text-align: left;
+}
+
 .section-1-f {
   position: relative;
   text-align: justify;
@@ -200,6 +209,10 @@ body {
   color: #ffffff;
 }
 
+.un-list {
+  text-align: left;
+}
+
 /* section 2 */
 
 .section-2 {
@@ -211,13 +224,14 @@ body {
 }
 
 .section-2-fh {
+  text-align: left;
   font-size: 29px;
 }
 
 .section-2-content {
   /* background-color: aliceblue; */
   height: 100%;
-  width: 80%;
+  width: 95%;
   text-align: center;
 }
 
@@ -731,6 +745,15 @@ iframe {
   opacity: 0.4;
 }
 
+.department-map {
+  margin-top: -40px;
+}
+
+.map-dep {
+  margin-top: -10px;
+  margin: 20px;
+}
+
 /* SL Leopard */
 
 .threats {
@@ -749,6 +772,10 @@ iframe {
   text-align: center;
   text-decoration: underline;
   line-height: 2.5;
+}
+
+.national-parks-para {
+  text-align: justify;
 }
 
 .threat-heading {
@@ -773,6 +800,7 @@ iframe {
 
 .centered-text-animals {
   position: absolute;
+  width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -982,6 +1010,27 @@ iframe {
 @media only screen and (max-width: 1250px) {
   .animals-section-1 {
     flex-direction: column;
+  }
+
+  .second-section {
+    flex-direction: column-reverse;
+  }
+
+  .hero {
+    display: none;
+  }
+
+  .hero-image {
+    height: 550px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-responsive {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
