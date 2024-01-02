@@ -47,6 +47,18 @@ hr {
   padding-right: 30px;
 }
 
+.nav-bar-hamburger {
+  display: none;
+  height: 65px;
+  width: 65px;
+}
+
+.nav-bar-hamburger img {
+  transform: scaleX(-1);
+  height: 100%;
+  width: 100%;
+}
+
 .re-links li {
   list-style: none;
 }
@@ -112,9 +124,9 @@ hr {
   padding: 10px;
 }
 
-.centered-text-wilpattu {
+/* .centered-text-wilpattu {
   position: absolute;
-  width: 100%;
+  width: 96.9%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -123,7 +135,25 @@ hr {
   font-size: 30px;
   text-align: center;
   background-color: rgba(240, 234, 234, 0.5);
-  border-radius: 15px;
+  border-radius: 11px;
+} */
+
+.centered-text-wilpattu {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(226, 215, 215, 0.5);
+  border-radius: 11px;
+}
+
+.centered-text {
+  text-align: center;
+  font-size: 30px;
+  color: #030303;
 }
 
 .introdcution {
@@ -285,15 +315,19 @@ hr {
   color: rgb(124, 124, 139);
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 935px) {
   .social-media-intro {
     max-width: 400px;
   }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 935px) {
   .re-links li {
     display: none;
+  }
+
+  .nav-bar-hamburger {
+    display: block;
   }
 
   .wild-life {
