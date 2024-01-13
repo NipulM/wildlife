@@ -31,6 +31,7 @@ hr {
 
 body {
   background-color: var(--soft-blue-green);
+  /* background-color: #8e8282; */
   margin: 0px;
   padding: 0px;
   height: 100vh;
@@ -55,8 +56,8 @@ body {
 
 .nav-bar-hamburger {
   display: none;
-  height: 65px;
-  width: 65px;
+  height: 57px;
+  width: 57px;
 }
 
 .nav-bar-hamburger img {
@@ -551,6 +552,10 @@ body {
 
 .nl:hover {
   color: rgb(124, 124, 139);
+}
+
+.none {
+  display: none;
 }
 
 /* INTRODUCTION */
