@@ -221,6 +221,40 @@ hr {
   text-align: center;
 }
 
+.wild-life-images {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 50px;
+}
+
+.centered-text-wilpattu {
+  opacity: 0;
+  animation: fadeIn-text 1.2s ease-in forwards;
+}
+
+@keyframes fadeIn-text {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    scale: 0.8;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+/* footer */
+
 .footer {
   height: auto;
   /* background-color: var(--deep-green); */
