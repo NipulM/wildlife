@@ -6,6 +6,7 @@
   --golden-yellow: #ffd700;
   --soft-orange: #ffa07a;
   --dark-crimson: #9d122e;
+  --nav-footer-a: rgb(228, 200, 200);
 }
 
 body {
@@ -356,12 +357,39 @@ hr {
 }
 
 @media only screen and (max-width: 935px) {
+  .nav-bar {
+    display: block;
+    border-radius: 0px 0px 15px 15px;
+  }
+
+  .re-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .re-links a {
+    border: solid 1px var(--nav-footer-a);
+    border-radius: 10px;
+    transition: border 0.1s ease-in-out;
+  }
+
+  .re-links a:hover {
+    border: solid 3px var(--soft-orange);
+  }
+
   .re-links li {
+    display: block;
+  }
+
+  .website-logo {
     display: none;
   }
 
   .nav-bar-hamburger {
-    display: block;
+    display: none;
   }
 
   .wild-life {
