@@ -1006,6 +1006,13 @@ iframe {
     margin-right: -10px;
   }
 
+  .re-links li {
+    margin: -8px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   .re-links a {
     border: solid 1px var(--nav-footer-a);
     border-radius: 10px;

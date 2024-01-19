@@ -384,6 +384,13 @@ hr {
     display: block;
   }
 
+  .re-links li {
+    margin: -8px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   .website-logo {
     display: none;
   }
