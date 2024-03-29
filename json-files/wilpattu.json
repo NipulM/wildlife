@@ -1,0 +1,58 @@
+[
+  {
+    "introduction": {
+      "title": "Unveiling Wilpattu",
+      "description": "Discover the allure of Wilpattu National Park, a captivating wilderness nestled in Sri Lanka's northwest. Since its establishment in 1938, Wilpattu has stood as the country's largest national park, inviting adventurers to explore its diverse landscapes and cultural heritage. Immerse yourself in the untamed beauty and rich history that define this natural sanctuary."
+    },
+
+    "wildlife": {
+      "sections": [
+        {
+          "title": "Wildlife Wonderland",
+          "content": [
+            {
+              "heading": "Biodiversity",
+              "image": "../images/Wilpattu-National-Park-header.webp",
+              "description": "Wilpattu National Park boasts a rich biodiversity that encompasses a variety of habitats, from dense forests to open grasslands. The park is home to a wide array of plant and animal species, making it a haven for nature enthusiasts and wildlife photographers alike."
+            },
+            {
+              "heading": "Signature Species",
+              "image": "../images/02.webp",
+              "description": "Among the remarkable fauna inhabiting Wilpattu, the elusive Sri Lankan leopard takes center stage. Other iconic species include elephants, sloth bears, and a plethora of bird species that add vibrancy to the park's ecological tapestry."
+            },
+            {
+              "heading": "Vegetation",
+              "image": "../images/Wilpattu-1-scaled-e1645177275283-1460x821.webp",
+              "description": "The park's vegetation is equally captivating, featuring a mosaic of dry zone and evergreen forests. Explore the unique flora, including rare orchids, towering trees, and vibrant shrubs that contribute to the park's ecological significance."
+            }
+          ]
+        }
+      ]
+    },
+
+    "historical_cultural": {
+      "sections": [
+        {
+          "title": "Historical and Cultural Significance",
+          "content": [
+            {
+              "heading": "Conservation Efforts",
+              "image": "../images/image-1a04395504-659193d7ba5ff.webp",
+              "description": "Discover the ongoing conservation efforts dedicated to preserving Wilpattu's ecological balance and cultural heritage. Learn about initiatives aimed at safeguarding the park for future generations, emphasizing the delicate harmony between human and natural history."
+            },
+            {
+              "heading": "Ancient Ruins",
+              "image": "../images/z_p33-No-protection1.webp",
+              "description": "Wilpattu is not only a sanctuary for wildlife but also a treasure trove of ancient ruins. Explore the remnants of historic structures dating back to the reign of King Vijaya, adding a layer of cultural significance to the park's natural allure."
+            },
+            {
+              "heading": "Sacred Sites",
+              "image": "../images/41092240141-8b4ab820ff-b-6591942c08ec8.webp",
+              "description": "Immerse yourself in the spiritual ambiance of Wilpattu, as the park houses several sacred sites that hold cultural importance. These sites provide a glimpse into the deep connection between nature and the island's rich heritage."
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
