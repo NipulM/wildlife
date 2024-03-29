@@ -11,6 +11,164 @@ const fetchData = async function (url) {
   }
 };
 
+// Fetching and rendering Sl Leopard data
+const leopardUrl = "/json-files/leopard.json";
+const fetchLeopardData = async () => {
+  const leopardData = await fetchData(leopardUrl);
+  renderLeopardData(leopardData);
+};
+
+fetchLeopardData();
+
+const renderLeopardData = function (data) {
+  const pageData = data[0].sections;
+  pageData.forEach((el) => {
+    if (el.id == 1) {
+      const section1Data = el.content;
+      for (let i = 0; i < section1Data.length; i++) {
+        if (section1Data[i].id % 2 != 0) {
+          let section1 = document.querySelector(".yala-section1");
+          let section3 = document.querySelector(".yala-section3");
+          const sectionCard = `
+                              <div class="section-1-content">
+                                <div class="section-1-f">
+                                  <h2>${section1Data[i].title}</h2>
+                                  <p class="national-parks-para">${section1Data[i].description}</p>
+                              </div>
+                                </div>
+                                <div class="section-1-img yala-section1-img">
+                                  <div class="section-1-image leopard-img">
+                                    <img
+                                      alt="section 1 image"
+                                      src="${section1Data[i].image}"
+                                    />
+                                  <div class="section-1-button">
+                                    <a
+                                      href="${section1Data[i].btnLink}"
+                                      target="_blank"
+                                      >Learn More</a
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                                `;
+          if (section1Data[i].id == 1) {
+            section1.insertAdjacentHTML("afterbegin", sectionCard);
+          } else if (section1Data[i].id == 3) {
+            section3.insertAdjacentHTML("afterbegin", sectionCard);
+          }
+        } else {
+          let section2 = document.querySelector(".yala-section2");
+
+          const sectionCard = `
+                            <div class="section-2-img">
+                              <div class="section-2-image leopard-img">
+                                <img
+                                  alt="section 2 image"
+                                  src="${section1Data[i].image}"
+                                />
+                                <div class="section-2-button">
+                                  <a
+                                    href="${section1Data[i].btnLink}"
+                                    target="_blank"
+                                    >Learn More</a
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                            <div class="section-2-content">
+                              <div class="section-2-f">
+                                <h2 class="section-2-fh">${section1Data[i].title}</h2>
+                                <p class="national-parks-para">${section1Data[i].description}</p>
+                              </div>
+                            </div>
+                                `;
+
+          section2.insertAdjacentHTML("afterbegin", sectionCard);
+        }
+      }
+    }
+    if (el.id == 2) {
+      let headerEl = document.querySelector(".threats-heading");
+      const header = `
+                      <p class="header-leopard">${el.title}</p>
+                        `;
+      headerEl.insertAdjacentHTML("afterbegin", header);
+
+      let data = el.content;
+
+      for (let i = 0; i < data.length; i++) {
+        // in order to do it dynamically we need to iterate through this result array (using a method like map, however its not really the easiest way of doing this, since we know that there're only 3 subheading im doing it manually :/)
+        // function addSubHeadings() {
+        //   let result = [];
+        //   for (let j = 0; j < data[i].content.length; j++) {
+        //     const subSectionCard = `<p class="threat-heading">${data[i].content[j].title}</p>
+        //                             <p>${data[i].content[j].description}</p>`;
+        //     result.push(subSectionCard);
+        //   }
+        //   console.log(result);
+        //   return result;
+        // }
+
+        // addSubHeadings();
+        const sectionCard1 = document.querySelector(".leopard-section1");
+        const sectionCardFooter1 = document.querySelector(
+          ".threats-learn-more1"
+        );
+        const sectionCard2 = document.querySelector(".leopard-section2");
+        const sectionCardFooter2 = document.querySelector(
+          ".threats-learn-more2"
+        );
+
+        const cardImage = `<div class="section-1-img">
+                              <div class="section-1-image">
+                                <img alt="threats image 1" src="${data[i].image}" />
+                              </div>
+                            </div>`;
+
+        const cardContent = `<div class="section-1-content">
+                                <div class="section-1-f">
+                                  <p class="threat-main">${data[i].title}</p>
+                                  <p class="threat-heading">${data[i].content[0].title}</p>
+                                  <p>${data[i].content[0].description}</p>
+                                  <p class="threat-heading">${data[i].content[1].title}</p>
+                                  <p>${data[i].content[1].description}</p>
+                                  <p class="threat-heading">${data[i].content[2].title}</p>
+                                  <p>${data[i].content[2].description}</p>
+                                </div>
+                              </div>`;
+
+        const cardFooter = `
+                              <p> ${
+                                data[i].id == 1
+                                  ? `Learn more and join the cause at: `
+                                  : `Discover more about habitat conservation at: `
+                              }
+                                <a href="${data[i].infoLink}"
+                                  >${
+                                    data[i].id == 1
+                                      ? "Wildlife Conservation Society - Sri Lanka"
+                                      : "Horton Plains Conservation Society"
+                                  }</a
+                                >
+                              </p>`;
+
+        if (data[i].id == 1) {
+          sectionCard1.insertAdjacentHTML("afterbegin", cardImage);
+          sectionCard1.insertAdjacentHTML("beforeend", cardContent);
+          sectionCardFooter1.insertAdjacentHTML("beforeend", cardFooter);
+        }
+
+        if (data[i].id == 2) {
+          sectionCard2.insertAdjacentHTML("afterbegin", cardImage);
+          sectionCard2.insertAdjacentHTML("afterbegin", cardContent);
+          sectionCardFooter2.insertAdjacentHTML("beforeend", cardFooter);
+        }
+      }
+    }
+  });
+};
+
 // Fetching and rendering Yala data
 const yalaDataUrl = "/json-files/yala.json";
 const fetchYalaData = async () => {
@@ -22,7 +180,6 @@ fetchYalaData();
 
 const renderYalaData = function (data) {
   data.forEach((el) => {
-    console.log(el);
     if (el.introduction) {
       let yalaIntroDiv = document.querySelector(".yala-introduction");
       const introData = el.introduction;

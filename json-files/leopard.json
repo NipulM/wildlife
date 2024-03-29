@@ -1,0 +1,78 @@
+[
+  {
+    "sections": [
+      {
+        "id": 1,
+        "content": [
+          {
+            "id": 1,
+            "title": "Wilpattu National Park",
+            "description": "Nestled in the northwestern plains of Sri Lanka, Wilpattu offers a wilder, more secluded alternative to Yala. Dense forests dominate the landscape, interspersed with natural lakes called \"villus.\" These villus attract a variety of wildlife, including leopards, elephants, water buffalo, and sambar deer. Wilpattu's leopards are known for their boldness, frequently observed resting beside the villus or ambushing prey in the open grasslands. Compared to Yala, the terrain at Wilpattu is flatter, making spotting wildlife easier.",
+            "image": "../images/sri-lankan-leopard-_1_.webp",
+            "btnLink": "https://en.wikipedia.org/wiki/Wilpattu_National_Park"
+          },
+          {
+            "id": 2,
+            "title": "Horton Plains National Park",
+            "description": "Perched atop Sri Lanka's central highlands, Horton Plains is a breathtaking tapestry of rolling grasslands, misty mountains, and cascading waterfalls. While leopards are present here, their sightings are extremely rare. However, the park's unique ecosystem shelters endemic species like the Ceylon leopard cat, red-billed blue magpie, and purple-faced langur. Hiking through the plains, you might encounter herds of deer grazing amidst the misty landscapes, while breathtaking views from World's End and Baker's Fall create lasting memories.",
+            "image": "../images/b4a841a528be0ac36325549b2f2598fa4-6592817b03649.webp",
+            "btnLink": "https://en.wikipedia.org/wiki/Horton_Plains_National_Park"
+          },
+          {
+            "id": 3,
+            "title": "Sinharaja Forest Reserve",
+            "description": "A UNESCO World Heritage Site, Sinharaja is a verdant rainforest teeming with biodiversity. Leopards roam these dense jungles, though sightings are rare due to the thick foliage. However, Sinharaja is a paradise for birdwatchers, with over 150 resident species including vibrant hornbills, emerald doves, and majestic crested hawk-eagles. Other noteworthy animals include primates like toque macaques and purple-faced langurs, along with colorful butterflies and reptiles. Exploring Sinharaja involves guided nature trails, offering a tranquil escape into the heart of Sri Lanka's rainforest kingdom.",
+            "image": "../images/Sri_Lanka_Leapord_2-resized.webp",
+            "btnLink": "https://en.wikipedia.org/wiki/Sinharaja_Forest_Reserve"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Leopard Conservation Challenges in Sri Lanka: Battling Poaching and Habitat Loss",
+        "content": [
+          {
+            "id": 1,
+            "title": "Protecting Elegance: Battling Poaching for Leopard Conservation",
+            "content": [
+              {
+                "title": "The Poaching Challenge",
+                "description": "Poaching threatens Sri Lankan leopards in Horton Plains National Park, risking their survival due to illegal wildlife trade demand."
+              },
+              {
+                "title": "Consequences",
+                "description": "The consequences of poaching are detrimental to leopard populations, disrupting the natural balance of ecosystems and endangering the survival of this species."
+              },
+              {
+                "title": "Our Action",
+                "description": "We're fighting poaching in Sri Lanka with strict enforcement, increased patrols, and global partnerships. Local communities are being educated on the crucial need for leopard conservation."
+              }
+            ],
+            "image": "../images/leopard-_1_.webp",
+            "infoLink": "https://www.slwcs.org/"
+          },
+          {
+            "id": 2,
+            "title": "Preserving Home: Addressing Habitat Loss to Ensure the Future of Horton Plains Leopards",
+            "content": [
+              {
+                "title": "The Habitat Loss Challenge",
+                "description": "Human activities like agriculture and infrastructure development threaten the habitats of leopards in Horton Plains National Park."
+              },
+              {
+                "title": "Consequences",
+                "description": "The shrinking habitats limit the available space for leopards to roam, hunt, and establish territories, leading to increased human-wildlife conflicts and a decline in the leopard population."
+              },
+              {
+                "title": "Our Action",
+                "description": "We ensure sustainable land use, habitat restoration, and connectivity in Sri Lanka. Collaborating with government, conservation groups, and communities is key to effective implementation."
+              }
+            ],
+            "image": "../images/3948586_orig.webp",
+            "infoLink": "https://www.sundaytimes.lk/230730/plus/preventing-a-human-leopard-conflict-at-horton-plains-526492.html"
+          }
+        ]
+      }
+    ]
+  }
+]
