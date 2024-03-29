@@ -1,0 +1,58 @@
+[
+  {
+    "introduction": {
+      "title": "Explore Yala's Wonders",
+      "description": "Explore Yala National Park, an enchanting oasis in southeastern Sri Lanka. Since its establishment in 1938, Yala has captivated visitors as the country's second-largest national park. Its diverse ecosystems and cultural significance make it a compelling destination. Immerse yourself in the park's vast jungles, expansive grasslands, and pristine coastal areas for an unforgettable encounter with nature."
+    },
+
+    "wildlife": {
+      "sections": [
+        {
+          "title": "Wildlife and Biodiversity",
+          "content": [
+            {
+              "title": "Diverse Fauna",
+              "image": "../images/1558512267_elephants-murchison.webp",
+              "description": "Experience the thrill of encountering Sri Lankan elephants, spotted deer, and sambar deer as you explore Yala's varied landscapes. Our curated content brings you up close to the untamed beauty of Sri Lanka's wildlife."
+            },
+            {
+              "title": "Iconic Leopard Population",
+              "image": "../images/kesha-cover.webp",
+              "description": "Embark on a virtual safari to witness the majestic Sri Lankan leopards that call Yala home. We provide a glimpse into their natural habitat and behavior, capturing the essence of these elusive big cats."
+            },
+            {
+              "title": "Avian Wonderland",
+              "image": "../images/lesserflamingo.webp",
+              "description": "For bird enthusiasts, Yala is a haven with over 200 species of birds. Join us on a birdwatching adventure and discover the vibrant peafowls, majestic eagles, and more that make Yala a paradise for birdwatchers."
+            }
+          ]
+        }
+      ]
+    },
+
+    "conservation_efforts": {
+      "sections": [
+        {
+          "title": "Conservation Efforts",
+          "content": [
+            {
+              "title": "Habitat Preservation",
+              "image": "../images/yala-elephaant-rock.webp",
+              "description": "Learn about the dedicated efforts to preserve Yala's unique habitats. Explore the measures in place to protect the delicate balance of the ecosystem, ensuring the sustained well-being of the park's flora and fauna."
+            },
+            {
+              "title": "Community Involvement",
+              "image": "../images/Ranger-One1.webp",
+              "description": "Discover the heartwarming stories of how local communities actively participate in conservation initiatives. From sustainable practices to coexisting with wildlife, these stories highlight the human aspect of Yala's conservation journey."
+            },
+            {
+              "title": "Challenges and Future Initiatives",
+              "image": "../images/DSC04964.webp",
+              "description": "Explore the challenges faced by Yala National Park and the innovative solutions being implemented. Join us in understanding the ongoing initiatives that aim to secure a vibrant and sustainable future for Yala."
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
