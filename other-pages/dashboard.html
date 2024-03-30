@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/other-pages/dashboard.css" />
+    <script type="module" src="/script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <!-- add a display-none -->
+      <nav class="nav-bar display-none">
+        <div class="nav-left">
+          <p class="dashboard-logo">Dashboard |&nbsp;</p>
+          <div class="current-user">
+            <!-- <p>nipulm</p> -->
+          </div>
+        </div>
+        <div class="nav-right">
+          <a href="../index.html" target="_blank">Go back to the website ➡️</a>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <!-- remove this display-none -->
+      <div class="container">
+        <div class="admin-form">
+          <h2>Login</h2>
+          <form class="loginForm">
+            <input
+              class="input-field"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Email address | Username"
+              required
+            />
+            <br />
+            <input
+              class="input-field"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <br />
+            <input class="login-btn" type="submit" value="Login" />
+          </form>
+        </div>
+      </div>
+    </section>
+    <section>
+      <!-- initially needs to have a display none -->
+      <div class="dashboard display-none">
+        <div class="content-container">
+          <div class="webpage-container">
+            <form class="page-form">
+              <label for="page">Select the page: </label>
+              <select class="page">
+                Select the page:
+                <option value="home">Home Page</option>
+                <option value="department">Department Page</option>
+                <option value="introduction">Introduction Page</option>
+                <option value="animals">Animals Page</option>
+                <option value="leopard">SL Leopard Page</option>
+                <option value="yala">Yala National Park</option>
+                <option value="wilpattu">Wilpattu National Park</option>
+              </select>
+            </form>
+            <div class="output-field">
+              <div>
+                <label>Data: </label>
+                <textarea type="text" class="data-output"></textarea>
+              </div>
+              <div class="btns">
+                <button class="get-data">Get Data</button>
+                <button class="make-changes">Make Changes</button>
+              </div>
+            </div>
+          </div>
+          <div class="subscription-container"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

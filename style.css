@@ -201,6 +201,38 @@ body {
   color: var(--hover-a-color);
 }
 
+.login-button {
+  position: absolute;
+  bottom: 0%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(243, 235, 235, 0.5);
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 35px;
+}
+
+.login-button a {
+  color: var(--before-hover-a-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: var(--hover-background-color);
+  border: 0.5px solid var(--hover-border);
+}
+
+.login-button:hover a {
+  color: var(--hover-a-color);
+}
+
 /* section 1 */
 
 .section-1 {
@@ -956,6 +988,11 @@ iframe {
   .hero-button {
     bottom: 10px;
     right: -44px;
+  }
+
+  .login-button {
+    bottom: 10px;
+    left: 35px;
   }
 
   .section-1-button {

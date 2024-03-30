@@ -11,12 +11,47 @@ const fetchData = async function (url) {
   }
 };
 
-// Fetching and rendering Department data
+// to kind of reset everything
+// localStorage.clear();
 
+// json-file locations
 const departmentUrl = "/json-files/department.json";
+const animalsUrl = "/json-files/animals.json";
+const leopardUrl = "/json-files/leopard.json";
+const yalaDataUrl = "/json-files/yala.json";
+const wilpattuDataUrl = "/json-files/wilpattu.json";
+const adminDataUrl = "/json-files/user_credentials.json";
 
+// checking whether if data exists if exists im not setting them again and again
+const hasDataStored = localStorage.getItem("dataStored");
+if (!hasDataStored) {
+  const storeData = async function () {
+    const departmentData = await fetchData(departmentUrl);
+    const leopardData = await fetchData(leopardUrl);
+    const animalData = await fetchData(animalsUrl);
+    const yalaData = await fetchData(yalaDataUrl);
+    const wilpattuData = await fetchData(wilpattuDataUrl);
+
+    localStorage.setItem("departmentData", JSON.stringify(departmentData));
+    localStorage.setItem("leopardData", JSON.stringify(leopardData));
+    localStorage.setItem("animalData", JSON.stringify(animalData));
+    localStorage.setItem("yalaData", JSON.stringify(yalaData));
+    localStorage.setItem("wilpattuData", JSON.stringify(wilpattuData));
+
+    localStorage.setItem("dataStored", "true");
+  };
+
+  storeData();
+}
+
+// Fetching and rendering Department data
 const fetchDepartmentData = async () => {
-  const departmentData = await fetchData(departmentUrl);
+  let departmentData;
+  if (localStorage.getItem("departmentData")) {
+    departmentData = await JSON.parse(localStorage.getItem("departmentData"));
+  } else {
+    departmentData = await fetchData(departmentUrl);
+  }
   renderDepartmentData(departmentData);
 };
 
@@ -91,9 +126,13 @@ const renderDepartmentData = function (data) {
 };
 
 //  Fetching and rendering Animals data
-const animalsUrl = "/json-files/animals.json";
 const fetchAnimalData = async () => {
-  const animalData = await fetchData(animalsUrl);
+  let animalData;
+  if (localStorage.getItem("animalData")) {
+    animalData = await JSON.parse(localStorage.getItem("animalData"));
+  } else {
+    animalData = await fetchData(animalsUrl);
+  }
   renderAnimalData(animalData);
 };
 
@@ -182,9 +221,13 @@ const renderAnimalData = function (data) {
 };
 
 // Fetching and rendering Sl Leopard data
-const leopardUrl = "/json-files/leopard.json";
 const fetchLeopardData = async () => {
-  const leopardData = await fetchData(leopardUrl);
+  let leopardData;
+  if (localStorage.getItem("animalData")) {
+    leopardData = await JSON.parse(localStorage.getItem("leopardData"));
+  } else {
+    leopardData = await fetchData(leopardUrl);
+  }
   renderLeopardData(leopardData);
 };
 
@@ -340,9 +383,13 @@ const renderLeopardData = function (data) {
 };
 
 // Fetching and rendering Yala data
-const yalaDataUrl = "/json-files/yala.json";
 const fetchYalaData = async () => {
-  const yalaData = await fetchData(yalaDataUrl);
+  let yalaData;
+  if (localStorage.getItem("animalData")) {
+    yalaData = await JSON.parse(localStorage.getItem("yalaData"));
+  } else {
+    yalaData = await fetchData(yalaDataUrl);
+  }
   renderYalaData(yalaData);
 };
 
@@ -428,9 +475,13 @@ const renderYalaData = function (data) {
 };
 
 // Fetching and rendering Wilpattu data
-const wilpattuDataUrl = "/json-files/wilpattu.json";
 const fetchWilpattuData = async () => {
-  const wilpattuData = await fetchData(wilpattuDataUrl);
+  let wilpattuData;
+  if (localStorage.getItem("animalData")) {
+    wilpattuData = await JSON.parse(localStorage.getItem("wilpattuData"));
+  } else {
+    wilpattuData = await fetchData(wilpattuDataUrl);
+  }
   renderWilpattuData(wilpattuData);
 };
 
@@ -507,3 +558,119 @@ const renderWilpattuData = function (data) {
     }
   });
 };
+
+// Authenticating the user
+
+const fetchAdminData = async () => {
+  const adminData = await fetchData(adminDataUrl);
+  return adminData;
+};
+
+const form = document.querySelector(".loginForm");
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  let form = document.querySelector(".container");
+
+  let navBar = document.querySelector(".nav-bar");
+  let currentUser = document.querySelector(".current-user");
+  let dashBoard = document.querySelector(".dashboard");
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const adminData = await fetchAdminData();
+  console.log(adminData);
+
+  for (let i = 0; i < adminData.users.length; i++) {
+    if (
+      (username == adminData.users[i].username ||
+        username == adminData.users[i].email) &&
+      password == adminData.users[i].password
+    ) {
+      const currentUserDisplay = `<p>${username}</p>`;
+      currentUser.insertAdjacentHTML("afterbegin", currentUserDisplay);
+
+      navBar.classList.remove("display-none");
+      dashBoard.classList.remove("display-none");
+      form.classList.add("display-none");
+    }
+  }
+});
+
+let getDataBtn = document.querySelector(".get-data");
+getDataBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  var selectedPage = document.querySelector(".page").value;
+  let output = document.querySelector(".data-output");
+  output.value = "";
+  if (selectedPage == "home") {
+  }
+  if (selectedPage == "department") {
+    const departmentData = localStorage.getItem("departmentData");
+    output.value = departmentData;
+  }
+  if (selectedPage == "introduction") {
+  }
+  if (selectedPage == "animals") {
+    const animalData = localStorage.getItem("animalData");
+    output.value = animalData;
+  }
+  if (selectedPage == "leopard") {
+    const leopardData = localStorage.getItem("leopardData");
+    output.value = leopardData;
+  }
+  if (selectedPage == "yala") {
+    const yalaData = localStorage.getItem("yalaData");
+    output.value = yalaData;
+  }
+  if (selectedPage == "wilpattu") {
+    const wilpattuData = localStorage.getItem("wilpattuData");
+    output.value = wilpattuData;
+  }
+});
+
+let updateContentBtn = document.querySelector(".make-changes");
+updateContentBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  var selectedPage = document.querySelector(".page").value;
+  var changes = document.querySelector(".data-output").value;
+
+  console.log(selectedPage);
+  console.log(changes);
+
+  console.log(selectedPage);
+  if (changes != "") {
+    if (selectedPage == "home") {
+    }
+    if (selectedPage == "department") {
+      localStorage.setItem("departmentData", changes);
+      const departmentData = JSON.parse(changes);
+      renderDepartmentData(departmentData);
+    }
+    if (selectedPage == "introduction") {
+    }
+    if (selectedPage == "animals") {
+      localStorage.setItem("animalData", changes);
+      const animalsData = JSON.parse(changes);
+      renderAnimalData(animalsData);
+    }
+    if (selectedPage == "leopard") {
+      localStorage.setItem("leopardData", changes);
+      const leopardData = JSON.parse(changes);
+      renderLeopardData(leopardData);
+    }
+    if (selectedPage == "yala") {
+      localStorage.setItem("yalaData", changes);
+      const yalaData = JSON.parse(changes);
+      renderYalaData(yalaData);
+    }
+    if (selectedPage == "wilpattu") {
+      localStorage.setItem("wilpattuData", changes);
+      const wilpattuData = JSON.parse(changes);
+      renderWilpattuData(wilpattuData);
+    }
+  } else {
+    console.error("dont do that");
+  }
+});
