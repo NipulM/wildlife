@@ -11,6 +11,95 @@ const fetchData = async function (url) {
   }
 };
 
+//  Fetching and rendering Animals data
+const animalsUrl = "/json-files/animals.json";
+const fetchAnimalData = async () => {
+  const animalData = await fetchData(animalsUrl);
+  renderAnimalData(animalData);
+};
+
+fetchAnimalData();
+
+const renderAnimalData = function (data) {
+  data.forEach((el) => {
+    // console.log(el);
+    if (el.introduction) {
+      let animalsIntroDiv = document.querySelector(".animals-intro");
+      const introData = el.introduction;
+      const introCard = `
+                        <h1 class="intro-header">${introData.title}</h1>
+                        <p class="intro-para">${introData.description}</p>
+                        `;
+
+      animalsIntroDiv.insertAdjacentHTML("afterbegin", introCard);
+    }
+
+    if (el.sections) {
+      const sectionData = el.sections;
+      for (let i = 0; i < sectionData.length; i++) {
+        // console.log(sectionData[i]);
+
+        const section1Div = document.querySelector(".animals-section1");
+        const section2Div = document.querySelector(".animals-section2");
+        const section3Div = document.querySelector(".animals-section3");
+
+        const image1Div = document.querySelector(".animals-image-section1");
+        const image2Div = document.querySelector(".animals-image-section2");
+        const image3Div = document.querySelector(".animals-image-section3");
+
+        const content1Div = document.querySelector(".animals-content-section1");
+        const content2Div = document.querySelector(".animals-content-section2");
+        const content3Div = document.querySelector(".animals-content-section3");
+
+        const cardData = sectionData[i];
+        // console.log(cardData.title);
+        const sectionTitleCard = `
+                                    <p class="animals-1-heading">${cardData.title}</p>
+                                    `;
+
+        // initially eqalizing it to an empty string because, otherwise it would just pass in an undefined
+        let section1ContentCard = "";
+        for (let j = 0; j < cardData.content.length; j++) {
+          const contentData = cardData.content[j];
+          // console.log(contentData.title, contentData.description);
+          section1ContentCard += `
+                                      <p class="animals-sub-heading">${contentData.title}</p>
+                                      <p>${contentData.description}</p>
+                                    `;
+        }
+
+        const sectionImageCard = `
+                                    <div class="animals-1-img animals-image-section1">
+                                      <div class="animals-1-image">
+                                        <img alt="section 1 image" src="${cardData.image}" />
+                                        <div class="animals-1-button">
+                                          <a
+                                            href="${cardData.btnLink}"
+                                            target="_blank"
+                                            >Learn More</a
+                                          >
+                                        </div>
+                                      </div>
+                                    </div>`;
+
+        if (sectionData[i].id == 1) {
+          section1Div.insertAdjacentHTML("afterbegin", sectionTitleCard);
+          content1Div.insertAdjacentHTML("afterbegin", section1ContentCard);
+          image1Div.insertAdjacentHTML("afterbegin", sectionImageCard);
+        } else if (sectionData[i].id == 2) {
+          section2Div.insertAdjacentHTML("afterbegin", sectionTitleCard);
+          content2Div.insertAdjacentHTML("afterbegin", section1ContentCard);
+          image2Div.insertAdjacentHTML("afterbegin", sectionImageCard);
+        } else if (sectionData[i].id == 3) {
+          section3Div.insertAdjacentHTML("afterbegin", sectionTitleCard);
+          content3Div.insertAdjacentHTML("afterbegin", section1ContentCard);
+          image3Div.insertAdjacentHTML("afterbegin", sectionImageCard);
+        }
+      }
+    }
+  });
+};
+
 // Fetching and rendering Sl Leopard data
 const leopardUrl = "/json-files/leopard.json";
 const fetchLeopardData = async () => {

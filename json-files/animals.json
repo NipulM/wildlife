@@ -1,0 +1,71 @@
+[
+  {
+    "introduction": {
+      "title": "Introduction",
+      "description": "Welcome to the enchanting world of Sri Lanka's indigenous animals. This page offers a glimpse into the rich biodiversity that graces the island nation. From majestic elephants to elusive leopards, Sri Lanka is home to a fascinating array of wildlife that captivates nature enthusiasts and conservationists alike."
+    },
+
+    "sections": [
+      {
+        "id": 1,
+        "title": "Sloth Bear (Melursus ursinus inornatus)",
+        "content": [
+          {
+            "title": "Description",
+            "description": "The sloth bear has a shaggy black coat and distinctive white V-shaped markings on its chest. It has long, curved claws adapted for climbing and feeding."
+          },
+          {
+            "title": "Behavior",
+            "description": "Sloth bears are primarily nocturnal and have a unique habit of carrying cubs on their backs, providing protection."
+          },
+          {
+            "title": "Habitat",
+            "description": "Found in various forested habitats, including dry and moist deciduous forests."
+          }
+        ],
+        "image": "../images/sloth-bear-side.webp",
+        "btnLink": "https://en.wikipedia.org/wiki/Sri_Lankan_sloth_bear"
+      },
+      {
+        "id": 2,
+        "title": "Purple-faced Langur (Semnopithecus vetulus)",
+        "content": [
+          {
+            "title": "Description",
+            "description": "Also known as the purple-faced leaf monkey, this primate species has a dark face with a purple hue. It has a long tail and is adapted for an arboreal lifestyle."
+          },
+          {
+            "title": "Habitat",
+            "description": "Endemic to Sri Lanka, these langurs inhabit both lowland and montane rainforests."
+          },
+          {
+            "title": "Conservation",
+            "description": "Faces threats from habitat loss and fragmentation. Conservation efforts focus on preserving their forest habitats."
+          }
+        ],
+        "image": "../images/4 purple langur - galle.webp",
+        "btnLink": "https://en.wikipedia.org/wiki/Purple-faced_langur"
+      },
+      {
+        "id": 3,
+        "title": "Spotted Deer (Axis axis ceylonensis)",
+        "content": [
+          {
+            "title": "Description",
+            "description": "The Sri Lankan subspecies of spotted deer has a reddish-brown coat with white spots. Males have antlers."
+          },
+          {
+            "title": "Habitat",
+            "description": "Found in a range of habitats, including grasslands, forests, and agricultural areas."
+          },
+          {
+            "title": "Conservation",
+            "description": "While not currently endangered, habitat loss and hunting pose threats to their populations."
+          }
+        ],
+        "image": "../images/Spotted_Deer_in_Sri_Lanka.webp",
+        "btnLink": "https://en.wikipedia.org/wiki/Sri_Lankan_axis_deer"
+      }
+    ]
+  }
+]
