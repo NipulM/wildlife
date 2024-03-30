@@ -11,6 +11,85 @@ const fetchData = async function (url) {
   }
 };
 
+// Fetching and rendering Department data
+
+const departmentUrl = "/json-files/department.json";
+
+const fetchDepartmentData = async () => {
+  const departmentData = await fetchData(departmentUrl);
+  renderDepartmentData(departmentData);
+};
+
+fetchDepartmentData();
+
+const renderDepartmentData = function (data) {
+  data.forEach((el) => {
+    if (el.introduction) {
+      const introData = el.introduction.content;
+      const introDiv = document.querySelector(".department-introduction");
+
+      let introCard = "";
+      for (let i = 0; i < introData.length; i++) {
+        introCard += `
+                          <h1 class="intro-dep-header">${introData[i].title}</h1>
+                          <p class="intro-dep-para">${introData[i].description}</p>
+                          `;
+      }
+      introDiv.insertAdjacentHTML("afterbegin", introCard);
+    }
+
+    if (el.section) {
+      const sectionData = el.section;
+
+      const sectionIntroDiv = document.querySelector(".department-section1");
+      const contentDiv = document.querySelector(".department-img-section");
+      const mapDiv = document.querySelector(".department-section-map");
+
+      const sectionIntroCard = `
+                              <h2 class="dep-section-gallery-header">${sectionData.title}</h2>
+                              <p class="dep-section-gallery-para">${sectionData.description}</p>
+                              `;
+
+      sectionIntroDiv.insertAdjacentHTML("afterbegin", sectionIntroCard);
+
+      let sectionContent = sectionData.content;
+
+      let contentCard = "";
+      for (let i = 0; i < sectionContent.length; i++) {
+        contentCard += `
+                        <div class="dep-image">
+                          <img
+                            class="dep-img"
+                            alt="gallery image ${i + 1}"
+                            src="${sectionContent[i].image}"
+                          />
+                          <div class="dep-img-name">
+                            <p>${sectionContent[i].heading}</p>
+                          </div>
+                        </div>
+                        `;
+      }
+
+      contentDiv.insertAdjacentHTML("afterbegin", contentCard);
+
+      let mapLink = sectionData.mapLink;
+      console.log(mapLink);
+      const mapCard = `
+                      <div class="map-dep">
+                        <iframe
+                          src="${mapLink}"
+                          allowfullscreen=""
+                          loading="lazy"
+                          referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                      </div>
+                        `;
+
+      mapDiv.insertAdjacentHTML("afterbegin", mapCard);
+    }
+  });
+};
+
 //  Fetching and rendering Animals data
 const animalsUrl = "/json-files/animals.json";
 const fetchAnimalData = async () => {
@@ -71,7 +150,9 @@ const renderAnimalData = function (data) {
         const sectionImageCard = `
                                     <div class="animals-1-img animals-image-section1">
                                       <div class="animals-1-image">
-                                        <img alt="section 1 image" src="${cardData.image}" />
+                                        <img alt="section ${
+                                          i + 1
+                                        } image" src="${cardData.image}" />
                                         <div class="animals-1-button">
                                           <a
                                             href="${cardData.btnLink}"
