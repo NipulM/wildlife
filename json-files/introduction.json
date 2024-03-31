@@ -1,0 +1,91 @@
+[
+  {
+    "introduction": {
+      "title": "Explore Sri Lanka's Wildlife",
+      "description": "Immerse yourself in the wild wonders of Sri Lanka, from lush jungles with elusive leopards to vibrant birdlife and majestic elephants in national parks. Along the coasts, experience the breathtaking sight of marine turtles under the moonlit sky. Sri Lanka's dedication to conservation is evident in protected areas, making it a paradise for nature enthusiasts. Join us in celebrating the diverse tapestry of life in this enchanting world of Sri Lankan wildlife."
+    },
+
+    "sections": [
+      {
+        "id": 1,
+        "title": "Sinharaja Forest Reserve",
+        "description": "Explore Sinharaja Forest Reserve in Sri Lanka, a UNESCO World Heritage Site teeming with unique flora and fauna, including the elusive Sri Lankan leopard and distinctive purple-faced langur monkey. Towering trees and vibrant orchids create a haven for nature enthusiasts, with birdwatchers drawn to endemic species like the captivating Sri Lanka blue magpie. Immerse yourself in the pristine beauty of Sinharaja's rich biodiversity.",
+        "tableContent": {
+          "rowHeadings": ["Animal", "Fact", "Species"],
+          "content": [
+            {
+              "heading": "Sri Lankan Leopard",
+              "fact": "Elusive and critically endangered.",
+              "species": "Key predator in Sinharaja, contributing to biodiversity."
+            },
+            {
+              "heading": "Sri Lanka Blue Magpie",
+              "fact": "Endemic bird with striking plumage.",
+              "species": "Part of Sinharaja's avian population, 200+ bird species documented."
+            },
+            {
+              "heading": "Hump-nosed Lizard",
+              "fact": "Unique lizard, distinctive nose hump, well-camouflaged.",
+              "species": "Contributes to Sinharaja's rich herpetofauna diversity."
+            }
+          ]
+        },
+        "images": [
+          {
+            "title": "Sri Lankan Leopard",
+            "image": "../images/leopard.webp"
+          },
+          {
+            "title": "Sri Lanka Blue Magpie",
+            "image": "../images/SRI-LANKA-BLUE-MAGPIE.webp"
+          },
+          {
+            "title": "Hump-nosed Lizard",
+            "image": "../images/1e91b93e158126357b204496e07c639a.webp"
+          }
+        ],
+        "mapLink": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.8991566479126!2d80.45744631245108!3d6.406990793557046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3e76bd109d45f%3A0x8c0ef1010649701b!2sSinharaja%20Forest%20Reserve!5e0!3m2!1sen!2slk!4v1703948031327!5m2!1sen!2slk"
+      },
+      {
+        "id": 2,
+        "title": "Udawalawe National Park",
+        "description": "Explore Udawalawe National Park in southern Sri Lanka, where wilderness meets conservation. Known for its thriving elephant population, the park offers a remarkable safari experience. Witness majestic elephants in their natural habitat, engaging in social activities and bathing in the reservoir. Udawalawe hosts diverse wildlife, including birds and mammals, amidst open grasslands and scenic vistas. A must-visit for an authentic wildlife encounter.",
+        "tableContent": {
+          "rowHeadings": ["Animal", "Fact", "Species"],
+          "content": [
+            {
+              "heading": "Asian Elephant",
+              "fact": "Wild elephants with strong social bonds.",
+              "species": "Wild elephants with vocal communication"
+            },
+            {
+              "heading": "Sri Lankan Sambar Deer",
+              "fact": "Home to the majestic Sri Lankan Sambar deer.",
+              "species": "Males have impressive antlers and vocalize during mating."
+            },
+            {
+              "heading": "Sri Lankan Crocodile",
+              "fact": "Mugger crocodiles in Udawalawe's water bodies.",
+              "species": "Crocodiles with a dinosaur lineage inhabit the park."
+            }
+          ]
+        },
+        "images": [
+          {
+            "title": "Asian Elephant",
+            "image": "../images/pexels-domenico-bertazzo-4769072-1024x683.webp"
+          },
+          {
+            "title": "Sri Lankan Sambar Deer",
+            "image": "../images/ye0m8647-2008-05-13-65919a997fc8d.webp"
+          },
+          {
+            "title": "Sri Lankan Crocodile",
+            "image": "../images/Crocodile_in_a_park.webp"
+          }
+        ],
+        "mapLink": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.370803868233!2d80.87374407688485!3d6.474628793517141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae408ff88887e79%3A0xaf12e79ffbd980d7!2sUdawalawe%20National%20Park!5e0!3m2!1sen!2slk!4v1703948308283!5m2!1sen!2slk"
+      }
+    ]
+  }
+]

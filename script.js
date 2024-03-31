@@ -21,6 +21,7 @@ const leopardUrl = "/json-files/leopard.json";
 const yalaDataUrl = "/json-files/yala.json";
 const wilpattuDataUrl = "/json-files/wilpattu.json";
 const adminDataUrl = "/json-files/user_credentials.json";
+const introductionUrl = "/json-files/introduction.json";
 
 // checking whether if data exists if exists im not setting them again and again
 const hasDataStored = localStorage.getItem("dataStored");
@@ -31,18 +32,159 @@ if (!hasDataStored) {
     const animalData = await fetchData(animalsUrl);
     const yalaData = await fetchData(yalaDataUrl);
     const wilpattuData = await fetchData(wilpattuDataUrl);
+    const introductionData = await fetchData(introductionUrl);
 
     localStorage.setItem("departmentData", JSON.stringify(departmentData));
     localStorage.setItem("leopardData", JSON.stringify(leopardData));
     localStorage.setItem("animalData", JSON.stringify(animalData));
     localStorage.setItem("yalaData", JSON.stringify(yalaData));
     localStorage.setItem("wilpattuData", JSON.stringify(wilpattuData));
+    localStorage.setItem("introductionData", JSON.stringify(introductionData));
 
     localStorage.setItem("dataStored", "true");
   };
 
   storeData();
 }
+
+// Fetching and rendering introduction data
+
+const fetchIntroductionData = async () => {
+  let introductionData;
+  if (localStorage.getItem("introductionData")) {
+    introductionData = await JSON.parse(
+      localStorage.getItem("introductionData")
+    );
+  } else {
+    introductionData = await fetchData(introductionUrl);
+  }
+  renderIntroductionData(introductionData);
+};
+
+fetchIntroductionData();
+
+const renderIntroductionData = function (data) {
+  data.forEach((el) => {
+    if (el.introduction) {
+      let introductionData = el.introduction;
+      const introDiv = document.querySelector(".introduction-section0");
+
+      const introCard = `
+                          <h1 class="intro-header">${introductionData.title}</h1>
+                          <p class="intro-para">${introductionData.description}</p>
+                          `;
+      introDiv.insertAdjacentHTML("afterbegin", introCard);
+    }
+    if (el.sections) {
+      let sectionData = el.sections;
+
+      const section1IntroDiv = document.querySelector(".intro-section1");
+      const section2IntroDiv = document.querySelector(".intro-section2");
+
+      for (let i = 0; i < sectionData.length; i++) {
+        const sectionIntroCard = `
+                                  <p class="introduction-section-1-header">${sectionData[i].title}</p>
+                                  <p class="introduction-section-1-para">${sectionData[i].description}</p>
+                                  `;
+
+        if (sectionData[i].id == 1) {
+          section1IntroDiv.insertAdjacentHTML("afterbegin", sectionIntroCard);
+        } else {
+          section2IntroDiv.insertAdjacentHTML("afterbegin", sectionIntroCard);
+        }
+
+        const tableData = sectionData[i].tableContent;
+
+        const headingSection1Div = document.querySelector(
+          ".intro-table-heading1"
+        );
+        const headingSection2Div = document.querySelector(
+          ".intro-table-heading2"
+        );
+
+        const tableBodySection1 = document.querySelector(".intro-table-tbody1");
+        const tableBodySection2 = document.querySelector(".intro-table-tbody2");
+
+        let tableHeading = "";
+        let tableCard = "";
+
+        for (let j = 0; j < tableData.content.length; j++) {
+          tableHeading += `                            
+                                <th class="headings">${tableData.rowHeadings[j]}</th>
+                                `;
+
+          tableCard += `
+                              <tr>
+                                <th class="headings-1">${tableData.content[j].heading}</th>
+                                <td class="data-m">${tableData.content[j].fact}</td>
+                                <td class="data-e">${tableData.content[j].species}</td>
+                              </tr>`;
+        }
+        if (sectionData[i].id == 1) {
+          headingSection1Div.insertAdjacentHTML("afterbegin", tableHeading);
+          tableBodySection1.insertAdjacentHTML("afterbegin", tableCard);
+        } else {
+          headingSection2Div.insertAdjacentHTML("afterbegin", tableHeading);
+          tableBodySection2.insertAdjacentHTML("afterbegin", tableCard);
+        }
+
+        if (sectionData[i].images) {
+          let imageSection1 = document.querySelector(
+            ".introduction-imageSection1"
+          );
+          let imageSection2 = document.querySelector(
+            ".introduction-imageSection2"
+          );
+
+          let galleryData = sectionData[i].images;
+          let imageCard = "";
+          for (let k = 0; k < galleryData.length; k++) {
+            imageCard += `
+                              <div class="section-1-img1w">
+                                <img
+                                  class="section-1-img1"
+                                  alt="section 1.${k} image"
+                                  src="${galleryData[k].image}"
+                                />
+                                <div class="section-1-imgname">
+                                  <p>${galleryData[k].title}</p>
+                                </div>
+                              </div>`;
+          }
+
+          if (sectionData[i].id == 1) {
+            imageSection1.insertAdjacentHTML("afterbegin", imageCard);
+          } else {
+            imageSection2.insertAdjacentHTML("afterbegin", imageCard);
+          }
+        }
+
+        if (sectionData[i].mapLink) {
+          let mapSection1Div = document.querySelector(
+            ".introduction-mapSection1"
+          );
+          let mapSection2Div = document.querySelector(
+            ".introduction-mapSection2"
+          );
+
+          const mapCard = `
+                          <iframe
+                            src="${sectionData[i].mapLink}"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                          </iframe>`;
+
+          if (sectionData[i].id == 1) {
+            mapSection1Div.insertAdjacentHTML("afterbegin", mapCard);
+          } else {
+            mapSection2Div.insertAdjacentHTML("afterbegin", mapCard);
+          }
+        }
+      }
+    }
+  });
+};
 
 // Fetching and rendering Department data
 const fetchDepartmentData = async () => {
@@ -567,110 +709,118 @@ const fetchAdminData = async () => {
 };
 
 const form = document.querySelector(".loginForm");
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+if (form)
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  let form = document.querySelector(".container");
+    let form = document.querySelector(".container");
 
-  let navBar = document.querySelector(".nav-bar");
-  let currentUser = document.querySelector(".current-user");
-  let dashBoard = document.querySelector(".dashboard");
+    let navBar = document.querySelector(".nav-bar");
+    let currentUser = document.querySelector(".current-user");
+    let dashBoard = document.querySelector(".dashboard");
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-  const adminData = await fetchAdminData();
-  console.log(adminData);
+    const adminData = await fetchAdminData();
+    console.log(adminData);
 
-  for (let i = 0; i < adminData.users.length; i++) {
-    if (
-      (username == adminData.users[i].username ||
-        username == adminData.users[i].email) &&
-      password == adminData.users[i].password
-    ) {
-      const currentUserDisplay = `<p>${username}</p>`;
-      currentUser.insertAdjacentHTML("afterbegin", currentUserDisplay);
+    for (let i = 0; i < adminData.users.length; i++) {
+      if (
+        (username == adminData.users[i].username ||
+          username == adminData.users[i].email) &&
+        password == adminData.users[i].password
+      ) {
+        const currentUserDisplay = `<p>${username}</p>`;
+        currentUser.insertAdjacentHTML("afterbegin", currentUserDisplay);
 
-      navBar.classList.remove("display-none");
-      dashBoard.classList.remove("display-none");
-      form.classList.add("display-none");
+        navBar.classList.remove("display-none");
+        dashBoard.classList.remove("display-none");
+        form.classList.add("display-none");
+      }
     }
-  }
-});
+  });
 
 let getDataBtn = document.querySelector(".get-data");
-getDataBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  var selectedPage = document.querySelector(".page").value;
-  let output = document.querySelector(".data-output");
-  output.value = "";
-  if (selectedPage == "home") {
-  }
-  if (selectedPage == "department") {
-    const departmentData = localStorage.getItem("departmentData");
-    output.value = departmentData;
-  }
-  if (selectedPage == "introduction") {
-  }
-  if (selectedPage == "animals") {
-    const animalData = localStorage.getItem("animalData");
-    output.value = animalData;
-  }
-  if (selectedPage == "leopard") {
-    const leopardData = localStorage.getItem("leopardData");
-    output.value = leopardData;
-  }
-  if (selectedPage == "yala") {
-    const yalaData = localStorage.getItem("yalaData");
-    output.value = yalaData;
-  }
-  if (selectedPage == "wilpattu") {
-    const wilpattuData = localStorage.getItem("wilpattuData");
-    output.value = wilpattuData;
-  }
-});
-
-let updateContentBtn = document.querySelector(".make-changes");
-updateContentBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  var selectedPage = document.querySelector(".page").value;
-  var changes = document.querySelector(".data-output").value;
-
-  console.log(selectedPage);
-  console.log(changes);
-
-  console.log(selectedPage);
-  if (changes != "") {
+if (getDataBtn)
+  getDataBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    var selectedPage = document.querySelector(".page").value;
+    let output = document.querySelector(".data-output");
+    output.value = "";
     if (selectedPage == "home") {
     }
     if (selectedPage == "department") {
-      localStorage.setItem("departmentData", changes);
-      const departmentData = JSON.parse(changes);
-      renderDepartmentData(departmentData);
+      const departmentData = localStorage.getItem("departmentData");
+      output.value = departmentData;
     }
     if (selectedPage == "introduction") {
+      const introductionData = localStorage.getItem("introductionData");
+      output.value = introductionData;
     }
     if (selectedPage == "animals") {
-      localStorage.setItem("animalData", changes);
-      const animalsData = JSON.parse(changes);
-      renderAnimalData(animalsData);
+      const animalData = localStorage.getItem("animalData");
+      output.value = animalData;
     }
     if (selectedPage == "leopard") {
-      localStorage.setItem("leopardData", changes);
-      const leopardData = JSON.parse(changes);
-      renderLeopardData(leopardData);
+      const leopardData = localStorage.getItem("leopardData");
+      output.value = leopardData;
     }
     if (selectedPage == "yala") {
-      localStorage.setItem("yalaData", changes);
-      const yalaData = JSON.parse(changes);
-      renderYalaData(yalaData);
+      const yalaData = localStorage.getItem("yalaData");
+      output.value = yalaData;
     }
     if (selectedPage == "wilpattu") {
-      localStorage.setItem("wilpattuData", changes);
-      const wilpattuData = JSON.parse(changes);
-      renderWilpattuData(wilpattuData);
+      const wilpattuData = localStorage.getItem("wilpattuData");
+      output.value = wilpattuData;
     }
-  } else {
-    console.error("dont do that");
-  }
-});
+  });
+
+let updateContentBtn = document.querySelector(".make-changes");
+if (updateContentBtn)
+  updateContentBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    var selectedPage = document.querySelector(".page").value;
+    var changes = document.querySelector(".data-output").value;
+
+    console.log(selectedPage);
+    console.log(changes);
+
+    console.log(selectedPage);
+    if (changes != "") {
+      if (selectedPage == "home") {
+      }
+      if (selectedPage == "department") {
+        localStorage.setItem("departmentData", changes);
+        const departmentData = JSON.parse(changes);
+        renderDepartmentData(departmentData);
+      }
+      if (selectedPage == "introduction") {
+        localStorage.setItem("introductionData", changes);
+        const introductionData = JSON.parse(changes);
+        renderAnimalData(introductionData);
+      }
+      if (selectedPage == "animals") {
+        localStorage.setItem("animalData", changes);
+        const animalsData = JSON.parse(changes);
+        renderAnimalData(animalsData);
+      }
+      if (selectedPage == "leopard") {
+        localStorage.setItem("leopardData", changes);
+        const leopardData = JSON.parse(changes);
+        renderLeopardData(leopardData);
+      }
+      if (selectedPage == "yala") {
+        localStorage.setItem("yalaData", changes);
+        const yalaData = JSON.parse(changes);
+        renderYalaData(yalaData);
+      }
+      if (selectedPage == "wilpattu") {
+        localStorage.setItem("wilpattuData", changes);
+        const wilpattuData = JSON.parse(changes);
+        renderWilpattuData(wilpattuData);
+      }
+    } else {
+      console.error("dont do that");
+    }
+  });
