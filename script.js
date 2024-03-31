@@ -12,40 +12,163 @@ const fetchData = async function (url) {
 };
 
 // to kind of reset everything
-// localStorage.clear();
+// localStorage.clear()
 
 // json-file locations
+const homeDataUrl = "/json-files/home.json";
 const departmentUrl = "/json-files/department.json";
 const animalsUrl = "/json-files/animals.json";
 const leopardUrl = "/json-files/leopard.json";
 const yalaDataUrl = "/json-files/yala.json";
 const wilpattuDataUrl = "/json-files/wilpattu.json";
 const adminDataUrl = "/json-files/user_credentials.json";
-const introductionUrl = "/json-files/introduction.json";
+const introductionDataUrl = "/json-files/introduction.json";
 
 // checking whether if data exists if exists im not setting them again and again
 const hasDataStored = localStorage.getItem("dataStored");
 if (!hasDataStored) {
   const storeData = async function () {
+    const homeData = await fetchData(homeDataUrl);
+    const introductionData = await fetchData(introductionDataUrl);
     const departmentData = await fetchData(departmentUrl);
     const leopardData = await fetchData(leopardUrl);
     const animalData = await fetchData(animalsUrl);
     const yalaData = await fetchData(yalaDataUrl);
     const wilpattuData = await fetchData(wilpattuDataUrl);
-    const introductionData = await fetchData(introductionUrl);
+    console.log(homeData);
 
+    localStorage.setItem("homeData", JSON.stringify(homeData));
+    localStorage.setItem("introductionData", JSON.stringify(introductionData));
     localStorage.setItem("departmentData", JSON.stringify(departmentData));
     localStorage.setItem("leopardData", JSON.stringify(leopardData));
     localStorage.setItem("animalData", JSON.stringify(animalData));
     localStorage.setItem("yalaData", JSON.stringify(yalaData));
     localStorage.setItem("wilpattuData", JSON.stringify(wilpattuData));
-    localStorage.setItem("introductionData", JSON.stringify(introductionData));
 
     localStorage.setItem("dataStored", "true");
   };
 
   storeData();
 }
+
+// Fetching and rendering home data
+
+const fetchHomeData = async () => {
+  let homeData;
+  if (localStorage.getItem("homeData")) {
+    homeData = await JSON.parse(localStorage.getItem("homeData"));
+  } else {
+    homeData = await fetchData(homeDataUrl);
+  }
+
+  renderHomeData(homeData);
+};
+
+fetchHomeData();
+
+const renderHomeData = function (data) {
+  data.forEach((el) => {
+    if (el.introduction) {
+      let introductionData = el.introduction;
+      const introDiv = document.querySelector(".home-introduction");
+
+      const introCard = `
+                        <h1 class="intro-header">${introductionData.title}</h1>
+                        <p class="intro-para">${introductionData.description}</p>
+                        `;
+      introDiv.insertAdjacentHTML("afterbegin", introCard);
+    }
+
+    if (el.sections) {
+      const sectionData = el.sections;
+      for (let i = 0; i < sectionData.length; i++) {
+        let section1ContentDiv = document.querySelector(
+          ".home-content-section1"
+        );
+        let section2ContentDiv = document.querySelector(
+          ".home-content-section2"
+        );
+        let section3ContentDiv = document.querySelector(
+          ".home-content-section3"
+        );
+
+        let imageSection1Div = document.querySelector(".home-image-container1");
+        let imageSection2Div = document.querySelector(".home-image-container2");
+        let imageSection3Div = document.querySelector(".home-image-container3");
+
+        // console.log(sectionData[i]);
+        const contentCard = `
+                              <div class="section-${
+                                sectionData[i].id == 2 ? "2" : "1"
+                              }-f">
+                                <h2>${sectionData[i].title}</h2>
+                                <p>${sectionData[i].description}</p>
+                              </div>
+                              `;
+
+        const imageCard = `
+                            <div class="section-${
+                              sectionData[i].id == 2 ? "2" : "1"
+                            }-image">
+                              <img alt="section 1 image" src="${
+                                sectionData[i].image
+                              }" />
+                              <div class="section-1-button">
+                                <a href="${
+                                  sectionData[i].btnLink
+                                }" target="_blank">Learn More</a>
+                              </div>
+                            </div>
+                              `;
+
+        if (sectionData[i].id == 1) {
+          section1ContentDiv.insertAdjacentHTML("afterbegin", contentCard);
+          imageSection1Div.insertAdjacentHTML("afterbegin", imageCard);
+        }
+
+        if (sectionData[i].id == 2) {
+          section2ContentDiv.insertAdjacentHTML("afterbegin", contentCard);
+          imageSection2Div.insertAdjacentHTML("afterbegin", imageCard);
+
+          let listData = sectionData[i].list;
+          // console.log(listData.list_items);
+          let listDiv = document.querySelector(".home-list2");
+
+          let ulItems = "";
+          const listHeader = `<h2 class="other">${listData.title}</h2>`;
+
+          for (let l = 0; l < listData.list_items.length; l++) {
+            ulItems += `<li>${listData.list_items[l]}</li>`;
+          }
+
+          listDiv.insertAdjacentHTML("afterbegin", listHeader);
+          document
+            .querySelector(".home-destinations")
+            .insertAdjacentHTML("afterbegin", ulItems);
+        }
+
+        if (sectionData[i].id == 3) {
+          section3ContentDiv.insertAdjacentHTML("afterbegin", contentCard);
+          imageSection3Div.insertAdjacentHTML("afterbegin", imageCard);
+
+          let listData = sectionData[i].list;
+          let listDiv = document.querySelector(".home-list3");
+
+          let listCard = "";
+          for (let k = 0; k < sectionData[i].list.length; k++) {
+            listCard += `
+                                <li class="numbered-list">${listData[k].name}</li>
+                                <ul>
+                                  <li class="un-list">${listData[k].description}</li>
+                                </ul>
+                                `;
+          }
+          listDiv.insertAdjacentHTML("afterbegin", listCard);
+        }
+      }
+    }
+  });
+};
 
 // Fetching and rendering introduction data
 
@@ -56,7 +179,7 @@ const fetchIntroductionData = async () => {
       localStorage.getItem("introductionData")
     );
   } else {
-    introductionData = await fetchData(introductionUrl);
+    introductionData = await fetchData(introductionDataUrl);
   }
   renderIntroductionData(introductionData);
 };
@@ -749,6 +872,8 @@ if (getDataBtn)
     let output = document.querySelector(".data-output");
     output.value = "";
     if (selectedPage == "home") {
+      const homeData = localStorage.getItem("homeData");
+      output.value = homeData;
     }
     if (selectedPage == "department") {
       const departmentData = localStorage.getItem("departmentData");
@@ -789,6 +914,9 @@ if (updateContentBtn)
     console.log(selectedPage);
     if (changes != "") {
       if (selectedPage == "home") {
+        localStorage.setItem("homeData", changes);
+        const homeData = JSON.parse(changes);
+        renderDepartmentData(homeData);
       }
       if (selectedPage == "department") {
         localStorage.setItem("departmentData", changes);
@@ -821,6 +949,6 @@ if (updateContentBtn)
         renderWilpattuData(wilpattuData);
       }
     } else {
-      console.error("dont do that");
+      prompt("dont do that");
     }
   });
