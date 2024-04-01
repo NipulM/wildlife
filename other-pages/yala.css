@@ -195,6 +195,75 @@ hr {
   animation-range: entry 50px;
 }
 
+.newsletter-header {
+  color: rgba(30, 30, 38, 0.9);
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+.newsletter-form-container {
+  width: 400px;
+}
+
+.newsletter-container {
+  display: flex;
+  justify-content: center;
+  background-image: radial-gradient(#5b635f, #3a6657);
+  padding: 20px;
+  border-radius: 10px 10px 0px 0px;
+  padding-bottom: 45px;
+}
+
+.name-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-inputs input {
+  border-radius: 6px;
+  border: 1px solid #ffffff;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.email {
+  display: flex;
+}
+
+.email-input {
+  width: 273px;
+  border-radius: 10px 0px 0px 10px;
+  border: 1px solid #ffffff;
+  outline: none;
+}
+
+.email-input:focus,
+.name-inputs input:focus {
+  border-color: #414242;
+  box-shadow: 0 0 5px #3a6657;
+}
+
+.newsletter input {
+  padding: 15px;
+}
+
+.subscribe-btn {
+  font-size: 15px;
+  color: rgb(191, 184, 184);
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  background-color: #2a443b;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.subscribe-btn:hover {
+  background-color: #5e756f;
+}
+
 @keyframes fadeIn-text {
   from {
     opacity: 0;
@@ -307,6 +376,16 @@ hr {
 
 .nl:hover {
   color: rgb(124, 124, 139);
+}
+
+@media only screen and (max-width: 429px) {
+  .newsletter-form-container {
+    width: 360px;
+  }
+
+  .email-input {
+    width: 230px;
+  }
 }
 
 @media only screen and (min-width: 935px) {
