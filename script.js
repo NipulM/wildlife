@@ -12,7 +12,7 @@ const fetchData = async function (url) {
 };
 
 // to kind of reset everything
-// localStorage.clear()
+// localStorage.clear();
 
 // json-file locations
 const homeDataUrl = "/json-files/home.json";
@@ -35,9 +35,9 @@ if (!hasDataStored) {
     const animalData = await fetchData(animalsUrl);
     const yalaData = await fetchData(yalaDataUrl);
     const wilpattuData = await fetchData(wilpattuDataUrl);
-    console.log(homeData);
-
+    console.log(animalData);
     localStorage.setItem("homeData", JSON.stringify(homeData));
+
     localStorage.setItem("introductionData", JSON.stringify(introductionData));
     localStorage.setItem("departmentData", JSON.stringify(departmentData));
     localStorage.setItem("leopardData", JSON.stringify(leopardData));
@@ -64,7 +64,8 @@ const fetchHomeData = async () => {
   renderHomeData(homeData);
 };
 
-fetchHomeData();
+const homePage = document.querySelector(".home-page");
+if (homePage) fetchHomeData();
 
 const renderHomeData = function (data) {
   data.forEach((el) => {
@@ -184,7 +185,8 @@ const fetchIntroductionData = async () => {
   renderIntroductionData(introductionData);
 };
 
-fetchIntroductionData();
+const introPage = document.querySelector(".introduction-page");
+if (introPage) fetchIntroductionData();
 
 const renderIntroductionData = function (data) {
   data.forEach((el) => {
@@ -320,7 +322,8 @@ const fetchDepartmentData = async () => {
   renderDepartmentData(departmentData);
 };
 
-fetchDepartmentData();
+const departmentPage = document.querySelector(".department-page");
+if (departmentPage) fetchDepartmentData();
 
 const renderDepartmentData = function (data) {
   data.forEach((el) => {
@@ -401,7 +404,8 @@ const fetchAnimalData = async () => {
   renderAnimalData(animalData);
 };
 
-fetchAnimalData();
+const animalsPage = document.querySelector(".animals-page");
+if (animalsPage) fetchAnimalData();
 
 const renderAnimalData = function (data) {
   data.forEach((el) => {
@@ -496,7 +500,8 @@ const fetchLeopardData = async () => {
   renderLeopardData(leopardData);
 };
 
-fetchLeopardData();
+const leopardPage = document.querySelector(".leopard-page");
+if (leopardPage) fetchLeopardData();
 
 const renderLeopardData = function (data) {
   const pageData = data[0].sections;
@@ -658,7 +663,8 @@ const fetchYalaData = async () => {
   renderYalaData(yalaData);
 };
 
-fetchYalaData();
+const yalaPage = document.querySelector(".yala-page");
+if (yalaPage) fetchYalaData();
 
 const renderYalaData = function (data) {
   data.forEach((el) => {
@@ -750,7 +756,8 @@ const fetchWilpattuData = async () => {
   renderWilpattuData(wilpattuData);
 };
 
-fetchWilpattuData();
+const wilpattuPage = document.querySelector(".wilpattu-page");
+if (wilpattuPage) fetchWilpattuData();
 
 const renderWilpattuData = function (data) {
   data.forEach((el) => {
@@ -840,7 +847,7 @@ if (form)
 
     let navBar = document.querySelector(".nav-bar");
     let currentUser = document.querySelector(".current-user");
-    let dashBoard = document.querySelector(".dashboard");
+    let dashBoard = document.querySelector(".wrapper");
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -860,6 +867,8 @@ if (form)
         navBar.classList.remove("display-none");
         dashBoard.classList.remove("display-none");
         form.classList.add("display-none");
+
+        showNewsletterSubscriptions();
       }
     }
   });
@@ -908,14 +917,16 @@ if (updateContentBtn)
     var selectedPage = document.querySelector(".page").value;
     var changes = document.querySelector(".data-output").value;
 
-    console.log(selectedPage);
-    console.log(changes);
+    // console.log(selectedPage);
+    // console.log(changes);
 
-    console.log(selectedPage);
+    // console.log(selectedPage);
     if (changes != "") {
       if (selectedPage == "home") {
         localStorage.setItem("homeData", changes);
         const homeData = JSON.parse(changes);
+
+        // here what basically happens is -> once the data has been chnaged im calling the fucntion with the data right? but the thing is it doesn't really matter because in the top of the code fetchDepartmentData() is initiallized and that's what actually gets called before the renderDepartement, so instead of calling the renderDepartment function i can also just do a fetchDepartment() and that also should work properly
         renderDepartmentData(homeData);
       }
       if (selectedPage == "department") {
@@ -952,3 +963,51 @@ if (updateContentBtn)
       prompt("dont do that");
     }
   });
+
+const newsLetterSubmitBtn = document.querySelector(".subscribe-btn");
+
+let subscriptions;
+const getSubscriptionData = async () => {
+  if (localStorage.getItem("subscriptionData")) {
+    subscriptions = JSON.parse(localStorage.getItem("subscriptionData"));
+  } else {
+    subscriptions = [];
+  }
+};
+
+getSubscriptionData();
+
+if (newsLetterSubmitBtn)
+  newsLetterSubmitBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("hi");
+
+    const userEmail = document.getElementById("email").value;
+    const userFirstName = document.getElementById("fname").value;
+    const userLastName = document.getElementById("lname").value;
+    console.log(userEmail, userFirstName, userLastName);
+
+    let obj = {
+      first_name: `${userFirstName}`,
+      last_name: `${userLastName}`,
+      user_email: `${userEmail}`,
+    };
+
+    if (localStorage.getItem("subscriptionData")) {
+      subscriptions = JSON.parse(localStorage.getItem("subscriptionData"));
+      subscriptions.push(obj);
+      localStorage.setItem("subscriptionData", JSON.stringify(subscriptions));
+    } else {
+      subscriptions.push(obj);
+      localStorage.setItem("subscriptionData", JSON.stringify(subscriptions));
+    }
+    // here for every input we can create an object n push it to array, which basically contains objects of names emails and all.. and before doing that we first need create a key where it contains data from the user input and saves that into the localstorage so whenever the lenght of the currect array gets incremented that local storages item should also needs to get updated..
+  });
+
+function showNewsletterSubscriptions() {
+  const subscriptionData = JSON.parse(localStorage.getItem("subscriptionData"));
+
+  subscriptionData.forEach((el) => {
+    document.querySelector(".newsletter-data").value += `${el.user_email}\n`;
+  });
+}
