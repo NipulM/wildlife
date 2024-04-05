@@ -53,34 +53,42 @@
     </section>
     <section>
       <!-- initially needs to have a display none -->
-      <div class="dashboard display-none">
-        <div class="content-container">
-          <div class="webpage-container">
-            <form class="page-form">
-              <label for="page">Select the page: </label>
-              <select class="page">
-                Select the page:
-                <option value="home">Home Page</option>
-                <option value="department">Department Page</option>
-                <option value="introduction">Introduction Page</option>
-                <option value="animals">Animals Page</option>
-                <option value="leopard">SL Leopard Page</option>
-                <option value="yala">Yala National Park</option>
-                <option value="wilpattu">Wilpattu National Park</option>
-              </select>
-            </form>
-            <div class="output-field">
-              <div>
-                <label>Data: </label>
-                <textarea type="text" class="data-output"></textarea>
-              </div>
-              <div class="btns">
-                <button class="get-data">Get Data</button>
-                <button class="make-changes">Make Changes</button>
+      <div class="wrapper display-none">
+        <div class="dashboard">
+          <div class="content-container">
+            <div class="webpage-container">
+              <form class="page-form">
+                <label for="page">Select the page: </label>
+                <select class="page">
+                  Select the page:
+                  <option value="home">Home Page</option>
+                  <option value="department">Department Page</option>
+                  <option value="introduction">Introduction Page</option>
+                  <option value="animals">Animals Page</option>
+                  <option value="leopard">SL Leopard Page</option>
+                  <option value="yala">Yala National Park</option>
+                  <option value="wilpattu">Wilpattu National Park</option>
+                </select>
+              </form>
+              <div class="output-field">
+                <div>
+                  <label>Data: </label>
+                  <textarea type="text" class="data-output"></textarea>
+                </div>
+                <div class="btns">
+                  <button class="get-data">Get Data</button>
+                  <button class="make-changes">Make Changes</button>
+                </div>
               </div>
             </div>
           </div>
-          <div class="subscription-container"></div>
+        </div>
+        <div class="subscription-container">
+          <p>Newsletter Subscriptions</p>
+          <div class="subscription-output">
+            <label>Data: </label>
+            <textarea type="text" class="newsletter-data"></textarea>
+          </div>
         </div>
       </div>
     </section>

@@ -34,6 +34,26 @@
   color: rgb(29, 41, 11);
 }
 
+.wrapper {
+  display: flex;
+  /* justify-content: space-around; */
+  gap: 65px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.subscription-output {
+  margin-top: 10px;
+}
+
+.newsletter-data {
+  vertical-align: top;
+  padding: 10px;
+  height: 300px;
+  width: 500px;
+  border-radius: 5px;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -48,7 +68,8 @@
   border-radius: 10px;
 }
 
-.content-container {
+.content-container,
+.subscription-container {
   margin: 10px;
 }
 
@@ -57,8 +78,9 @@
   margin-bottom: 25px;
 }
 
-.webpage-container {
-  margin-top: 50px;
+.webpage-container,
+.subscription-container {
+  margin-top: 40px;
 }
 
 .input-field {
