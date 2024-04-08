@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/other-pages/dashboard.css" />
     <script type="module" src="/script.js" defer></script>
   </head>
-  <body>
+  <body class="dashboard-page">
     <header>
       <!-- add a display-none -->
       <nav class="nav-bar display-none">
@@ -18,7 +18,10 @@
           </div>
         </div>
         <div class="nav-right">
-          <a href="../index.html" target="_blank">Go back to the website ➡️</a>
+          <button class="logout" onclick="redirectToIndex()">
+            Return to Website &nbsp;
+          </button>
+          <button class="logout">Logout</button>
         </div>
       </nav>
     </header>
@@ -53,9 +56,23 @@
     </section>
     <section>
       <!-- initially needs to have a display none -->
-      <div class="wrapper display-none">
-        <div class="dashboard">
-          <div class="content-container">
+      <div class="wrapper">
+        <div class="dashboard display-none">
+          <div class="display-data-card">
+            <div class="display-data-card-img">
+              <img src="/images/code.webp" />
+            </div>
+            <div class="card-data">
+              <p>
+                With this tool, you can effortlessly select the page whose
+                content you wish to modify. Simply choose the desired page, then
+                click a button, and watch as the content transforms
+                instantaneously.
+              </p>
+              <button class="change-data">Change Data</button>
+            </div>
+          </div>
+          <!-- <div class="content-container">
             <div class="webpage-container">
               <form class="page-form">
                 <label for="page">Select the page: </label>
@@ -81,16 +98,37 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
-        <div class="subscription-container">
-          <p>Newsletter Subscriptions</p>
+        <div class="subscription-container display-none">
+          <textarea type="text" class="newsletter-data display-none"></textarea>
+          <div class="display-data-card display-newsletter-card">
+            <div class="display-data-card-img">
+              <img
+                src="/images/newsletter-printed-on-torn-piece-of-paper-photo.jpg"
+              />
+            </div>
+            <div class="card-data">
+              <p>
+                Initiate your journey into newsletter subscriptions by clicking
+                'See Newsubscriptions', effortlessly customizing your inbox
+                experience with ease.
+              </p>
+              <button class="getnewsletter-data">See Newsubscriptions</button>
+            </div>
+          </div>
+          <!-- <p>Newsletter Subscriptions</p>
           <div class="subscription-output">
             <label>Data: </label>
             <textarea type="text" class="newsletter-data"></textarea>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
+    <script>
+      function redirectToIndex() {
+        window.open("../index.html", "_blank");
+      }
+    </script>
   </body>
 </html>
