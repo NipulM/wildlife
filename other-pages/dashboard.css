@@ -26,20 +26,15 @@
 
 .nav-right a {
   text-decoration: none;
-  color: black;
-}
-
-.nav-right a:hover {
-  text-decoration: none;
-  color: rgb(29, 41, 11);
 }
 
 .wrapper {
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: center;
   gap: 65px;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin-top: 50px;
 }
 
 .subscription-output {
@@ -49,16 +44,16 @@
 .newsletter-data {
   vertical-align: top;
   padding: 10px;
-  height: 300px;
-  width: 500px;
-  border-radius: 5px;
+  height: 400px;
+  width: 450px;
+  border-radius: 12px;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 250px;
+  margin-top: 230px;
 }
 
 .admin-form {
@@ -68,21 +63,10 @@
   border-radius: 10px;
 }
 
-.content-container,
-.subscription-container {
-  margin: 10px;
-}
-
 .admin-form h2 {
   margin-left: 100px;
   margin-bottom: 25px;
 }
-
-.webpage-container,
-.subscription-container {
-  margin-top: 40px;
-}
-
 .input-field {
   padding: 10px;
   margin-bottom: 10px;
@@ -133,4 +117,83 @@
   justify-content: space-between;
   margin-left: 40px;
   width: 650px;
+}
+
+.display-data-card {
+  height: 400px;
+  width: 450px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.display-data-card-img {
+  height: 250px;
+  width: 450px;
+  overflow: hidden;
+  background-color: aliceblue;
+  border-radius: 11px;
+
+  position: relative;
+  text-align: center;
+}
+
+.display-data-card-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.card-data {
+  text-align: center;
+}
+
+.card-data p {
+  margin-top: 17px;
+  padding: 5px;
+  font-size: 16.5px;
+  margin-bottom: 10px;
+}
+
+.card-data button {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card-data button:hover {
+  background-color: #0056b3;
+}
+
+.card-data button:focus {
+  outline: none;
+}
+
+.webpage-container {
+  padding: 10px;
+}
+
+.logout {
+  display: inline-block;
+  padding: 7px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 2px solid #000; /* Black border */
+  color: #000; /* Black text */
+  background-color: #fff; /* White background */
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
 }

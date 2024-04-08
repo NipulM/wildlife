@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Editor</title>
+    <link rel="stylesheet" href="/other-pages/dashboard.css" />
+    <script type="module" src="/script.js" defer></script>
+  </head>
+  <body>
+    <div class="contentEditor-page">
+      <div class="dashboard">
+        <div class="content-container">
+          <div class="webpage-container">
+            <form class="page-form">
+              <label for="page">Select the page: </label>
+              <select class="page">
+                Select the page:
+                <option value="home">Home Page</option>
+                <option value="department">Department Page</option>
+                <option value="introduction">Introduction Page</option>
+                <option value="animals">Animals Page</option>
+                <option value="leopard">SL Leopard Page</option>
+                <option value="yala">Yala National Park</option>
+                <option value="wilpattu">Wilpattu National Park</option>
+              </select>
+            </form>
+            <div class="output-field">
+              <div>
+                <label>Data: </label>
+                <textarea type="text" class="data-output"></textarea>
+              </div>
+              <div class="btns">
+                <button class="get-data">Get Data</button>
+                <button class="make-changes">Make Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

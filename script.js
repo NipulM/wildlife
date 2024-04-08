@@ -746,6 +746,7 @@ const renderYalaData = function (data) {
 };
 
 // Fetching and rendering Wilpattu data
+
 const fetchWilpattuData = async () => {
   let wilpattuData;
   if (localStorage.getItem("animalData")) {
@@ -753,6 +754,7 @@ const fetchWilpattuData = async () => {
   } else {
     wilpattuData = await fetchData(wilpattuDataUrl);
   }
+
   renderWilpattuData(wilpattuData);
 };
 
@@ -838,7 +840,9 @@ const fetchAdminData = async () => {
   return adminData;
 };
 
+const account = JSON.parse(localStorage.getItem("account"));
 const form = document.querySelector(".loginForm");
+
 if (form)
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -847,13 +851,16 @@ if (form)
 
     let navBar = document.querySelector(".nav-bar");
     let currentUser = document.querySelector(".current-user");
-    let dashBoard = document.querySelector(".wrapper");
+
+    let dashBoardContainer = document.querySelector(".dashboard");
+    let subscriptionContainer = document.querySelector(
+      ".subscription-container"
+    );
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     const adminData = await fetchAdminData();
-    console.log(adminData);
 
     for (let i = 0; i < adminData.users.length; i++) {
       if (
@@ -861,27 +868,118 @@ if (form)
           username == adminData.users[i].email) &&
         password == adminData.users[i].password
       ) {
+        // here im saving the account (with their role and username) -> also this happens only one time, after login-in as an admin this form doesn't show at all
+        let accArr = [
+          {
+            role: `${adminData.users[i].role}`,
+            username: `${adminData.users[i].username}`,
+          },
+        ];
+
+        if (adminData.users[i].role == "admin") {
+          localStorage.setItem("account", JSON.stringify(accArr));
+          subscriptionContainer.classList.remove("display-none");
+        } else {
+          localStorage.setItem("account", JSON.stringify(accArr));
+        }
+
         const currentUserDisplay = `<p>${username}</p>`;
         currentUser.insertAdjacentHTML("afterbegin", currentUserDisplay);
 
         navBar.classList.remove("display-none");
-        dashBoard.classList.remove("display-none");
+        dashBoardContainer.classList.remove("display-none");
         form.classList.add("display-none");
-
-        showNewsletterSubscriptions();
       }
     }
   });
 
+// if the dashboard page is open as well as if there's an account in the localStorage it checks the accounts role, and then if its an admin it shows everything if not it only shows the editor
+const dashboardPage = document.querySelector(".dashboard-page");
+if (account && dashboardPage) {
+  let form = document.querySelector(".container");
+  let navBar = document.querySelector(".nav-bar");
+  let currentUser = document.querySelector(".current-user");
+  let dashBoardContainer = document.querySelector(".dashboard");
+  let subscriptionContainer = document.querySelector(".subscription-container");
+
+  const currentUserDisplay = `<p>${account[0].username}</p>`;
+  currentUser.insertAdjacentHTML("afterbegin", currentUserDisplay);
+
+  form.classList.add("display-none");
+
+  if (account[0].role == "admin") {
+    subscriptionContainer.classList.remove("display-none");
+    navBar.classList.remove("display-none");
+    dashBoardContainer.classList.remove("display-none");
+  } else if (account[0].role == "site_user") {
+    navBar.classList.remove("display-none");
+    dashBoardContainer.classList.remove("display-none");
+    form.classList.add("display-none");
+  }
+}
+
+// once the dashboards change-data button is clicked a popup shows up
+let changeData = document.querySelector(".change-data");
+if (changeData)
+  changeData.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.open(
+      "/other-pages/contentEditor.html",
+      "popup",
+      "width=750,height=650"
+    );
+  });
+
+// only admins can see this button
+let getNewsletterDataBtn = document.querySelector(".getnewsletter-data");
+if (getNewsletterDataBtn) {
+  getNewsletterDataBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const cardDiv = document.querySelector(".display-newsletter-card");
+    const newsletterDataOutput = document.querySelector(".newsletter-data");
+
+    if (JSON.parse(localStorage.getItem("subscriptionData"))) {
+      // the card that shows "here you can get the subscription" gets a display none
+      cardDiv.classList.add("display-none");
+
+      // and here the data is gonna get fetched from the local storage
+      showNewsletterSubscriptions();
+
+      // and that data gonna show up in this textarea, and then the display-none class gets removed
+      newsletterDataOutput.classList.remove("display-none");
+    } else {
+      alert("Nobody has subscripted as of now!");
+    }
+  });
+}
+
+// here it fetches the data, and um it puts it inside the textarea, and from the above it removes the display-none and shows it to the admins
+function showNewsletterSubscriptions() {
+  const subscriptionData = JSON.parse(localStorage.getItem("subscriptionData"));
+
+  subscriptionData.forEach((el) => {
+    document.querySelector(".newsletter-data").value += `${el.user_email}\n`;
+  });
+}
+
+// once the get-data button on the popup shows up && after someone clicks on it,
 let getDataBtn = document.querySelector(".get-data");
 if (getDataBtn)
   getDataBtn.addEventListener("click", function (e) {
     e.preventDefault();
+
     var selectedPage = document.querySelector(".page").value;
+    // from the dropdown it checks which page has been cliked
+
     let output = document.querySelector(".data-output");
+
+    // it initially sets value to an empty string, just so that, if someone clicks again, its gonna have an empty input field
     output.value = "";
     if (selectedPage == "home") {
+      // if its the home page
       const homeData = localStorage.getItem("homeData");
+
+      // it shows the value that's in the home page, according to its key
       output.value = homeData;
     }
     if (selectedPage == "department") {
@@ -910,20 +1008,28 @@ if (getDataBtn)
     }
   });
 
+// once the user clicks on the make changes button, it does this:
 let updateContentBtn = document.querySelector(".make-changes");
 if (updateContentBtn)
   updateContentBtn.addEventListener("click", function (e) {
     e.preventDefault();
     var selectedPage = document.querySelector(".page").value;
+
+    // after getting the changes from the textarea
     var changes = document.querySelector(".data-output").value;
 
     // console.log(selectedPage);
     // console.log(changes);
 
     // console.log(selectedPage);
+
+    // it check whether if they actually have made changes, if so,
     if (changes != "") {
       if (selectedPage == "home") {
+        // it save the changes on the local storage according to its key:
         localStorage.setItem("homeData", changes);
+
+        // here after getting the saved data from the local storage, it passes it to the rendering function
         const homeData = JSON.parse(changes);
 
         // here what basically happens is -> once the data has been chnaged im calling the fucntion with the data right? but the thing is it doesn't really matter because in the top of the code fetchDepartmentData() is initiallized and that's what actually gets called before the renderDepartement, so instead of calling the renderDepartment function i can also just do a fetchDepartment() and that also should work properly
@@ -964,9 +1070,10 @@ if (updateContentBtn)
     }
   });
 
-const newsLetterSubmitBtn = document.querySelector(".subscribe-btn");
-
+// creating an array which can hold data, that's in the local storage
+// if there's no data, then its gonna get assinged to an empty array
 let subscriptions;
+
 const getSubscriptionData = async () => {
   if (localStorage.getItem("subscriptionData")) {
     subscriptions = JSON.parse(localStorage.getItem("subscriptionData"));
@@ -977,6 +1084,7 @@ const getSubscriptionData = async () => {
 
 getSubscriptionData();
 
+const newsLetterSubmitBtn = document.querySelector(".subscribe-btn");
 if (newsLetterSubmitBtn)
   newsLetterSubmitBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -1004,10 +1112,16 @@ if (newsLetterSubmitBtn)
     // here for every input we can create an object n push it to array, which basically contains objects of names emails and all.. and before doing that we first need create a key where it contains data from the user input and saves that into the localstorage so whenever the lenght of the currect array gets incremented that local storages item should also needs to get updated..
   });
 
-function showNewsletterSubscriptions() {
-  const subscriptionData = JSON.parse(localStorage.getItem("subscriptionData"));
+const contenteEditor = document.querySelector(".login-button");
+if (contenteEditor && JSON.parse(localStorage.getItem("account"))) {
+  contenteEditor.classList.remove("display-none");
 
-  subscriptionData.forEach((el) => {
-    document.querySelector(".newsletter-data").value += `${el.user_email}\n`;
+  contenteEditor.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.open(
+      "/other-pages/contentEditor.html",
+      "popup",
+      "width=750,height=650"
+    );
   });
 }

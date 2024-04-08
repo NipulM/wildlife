@@ -93,6 +93,8 @@ body {
   padding: 8px;
 }
 
+/* here */
+ 
 .re-links li a:hover {
   border-bottom: 3px solid #ffa07a;
 }
@@ -101,9 +103,11 @@ body {
   cursor: pointer;
 }
 
-/* .display-none {
+.display-none {
   display: none;
 }
+
+/*
 
 .goes-out {
   animation: goes-out 1.5s ease-in-out forwards;
@@ -203,14 +207,14 @@ body {
 
 .login-button {
   position: absolute;
-  bottom: 0%;
-  left: 5%;
+  bottom: -4%;
+  left: 1%;
   transform: translate(-50%, -50%);
-  background-color: rgba(243, 235, 235, 0.5);
   color: rgb(0, 0, 0);
-  padding: 10px 20px;
+  margin: 20px;
   border-radius: 5px;
   margin-left: 35px;
+  cursor: pointer;
 }
 
 .login-button a {
@@ -224,13 +228,17 @@ body {
   width: 100%;
 }
 
-.login-button:hover {
+/* .login-button:hover {
   background-color: var(--hover-background-color);
   border: 0.5px solid var(--hover-border);
-}
+} */
 
-.login-button:hover a {
+/* .login-button:hover a {
   color: var(--hover-a-color);
+} */
+
+.login-button img {
+  height: 50px;
 }
 
 /* section 1 */
@@ -999,6 +1007,8 @@ iframe {
     border-radius: 10px;
     transition: border 0.1s ease-in-out;
   }
+
+/* here */
 
   .re-links a:hover {
     border: solid 3px var(--soft-orange);
