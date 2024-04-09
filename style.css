@@ -981,7 +981,7 @@ iframe {
   border: 1px #000000;
 }
 
-@media only screen and (max-width: 935px) {
+@media only screen and (max-width: 1000px) {
   .nav-bar {
     display: block;
     border-radius: 0px 0px 15px 15px;
@@ -1068,8 +1068,8 @@ iframe {
   }
 
   .login-button {
-    bottom: 10px;
-    left: 35px;
+    /* bottom: 10px; */
+    left: 15px;
   }
 
   .section-1-button {

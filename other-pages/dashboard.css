@@ -35,6 +35,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   margin-top: 50px;
+  margin-bottom: 60px;
 }
 
 .subscription-output {
@@ -44,8 +45,8 @@
 .newsletter-data {
   vertical-align: top;
   padding: 10px;
-  height: 400px;
-  width: 450px;
+  height: 500px;
+  width: 400px;
   border-radius: 12px;
 }
 
@@ -120,8 +121,8 @@
 }
 
 .display-data-card {
-  height: 400px;
-  width: 450px;
+  height: 500px;
+  width: 400px;
   border: 1px solid #ccc;
   border-radius: 12px;
   margin-bottom: 20px;
@@ -149,10 +150,11 @@
 }
 
 .card-data p {
-  margin-top: 17px;
-  padding: 5px;
-  font-size: 16.5px;
-  margin-bottom: 10px;
+  /* margin-top: 17px; */
+  padding: 15px;
+  font-size: 18px;
+  margin: 10px 10px 10px 10px;
+  /* margin-bottom: 10px; */
 }
 
 .card-data button {
@@ -196,4 +198,32 @@
 .logout:hover {
   background-color: #000; /* Black background */
   color: #fff; /* White text */
+}
+
+@media only screen and (max-width: 500px) {
+  .nav-bar {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 15px;
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .display-data-card {
+    height: 500px;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .newsletter-data {
+    vertical-align: top;
+    padding: 10px;
+    height: 500px;
+    width: 350px;
+    border-radius: 12px;
+  }
 }

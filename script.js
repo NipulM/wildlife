@@ -35,7 +35,6 @@ if (!hasDataStored) {
     const animalData = await fetchData(animalsUrl);
     const yalaData = await fetchData(yalaDataUrl);
     const wilpattuData = await fetchData(wilpattuDataUrl);
-    console.log(animalData);
     localStorage.setItem("homeData", JSON.stringify(homeData));
 
     localStorage.setItem("introductionData", JSON.stringify(introductionData));
@@ -883,7 +882,7 @@ if (form)
           localStorage.setItem("account", JSON.stringify(accArr));
         }
 
-        const currentUserDisplay = `<p>${username}</p>`;
+        const currentUserDisplay = `<p>${adminData.users[i].username}</p>`;
         currentUser.insertAdjacentHTML("afterbegin", currentUserDisplay);
 
         navBar.classList.remove("display-none");
@@ -948,7 +947,7 @@ if (getNewsletterDataBtn) {
       // and that data gonna show up in this textarea, and then the display-none class gets removed
       newsletterDataOutput.classList.remove("display-none");
     } else {
-      alert("Nobody has subscripted as of now!");
+      alert("Currently, there are no subscriptions available.");
     }
   });
 }
@@ -975,37 +974,17 @@ if (getDataBtn)
 
     // it initially sets value to an empty string, just so that, if someone clicks again, its gonna have an empty input field
     output.value = "";
-    if (selectedPage == "home") {
-      // if its the home page
-      const homeData = localStorage.getItem("homeData");
 
-      // it shows the value that's in the home page, according to its key
-      output.value = homeData;
-    }
-    if (selectedPage == "department") {
-      const departmentData = localStorage.getItem("departmentData");
-      output.value = departmentData;
-    }
-    if (selectedPage == "introduction") {
-      const introductionData = localStorage.getItem("introductionData");
-      output.value = introductionData;
-    }
-    if (selectedPage == "animals") {
-      const animalData = localStorage.getItem("animalData");
-      output.value = animalData;
-    }
-    if (selectedPage == "leopard") {
-      const leopardData = localStorage.getItem("leopardData");
-      output.value = leopardData;
-    }
-    if (selectedPage == "yala") {
-      const yalaData = localStorage.getItem("yalaData");
-      output.value = yalaData;
-    }
-    if (selectedPage == "wilpattu") {
-      const wilpattuData = localStorage.getItem("wilpattuData");
-      output.value = wilpattuData;
-    }
+    localStorage.getItem(`${selectedPage}Data`);
+    output.value = localStorage.getItem(`${selectedPage}Data`);
+
+    // we can also use if else
+    // if (selectedPage == "home") {
+    //   // if its the home page
+    //   const homeData = localStorage.getItem("homeData");
+    //   // it shows the value that's in the home page, according to its key
+    //   output.value = homeData;
+    // }
   });
 
 // once the user clicks on the make changes button, it does this:
@@ -1017,54 +996,23 @@ if (updateContentBtn)
 
     // after getting the changes from the textarea
     var changes = document.querySelector(".data-output").value;
-
     // console.log(selectedPage);
     // console.log(changes);
-
     // console.log(selectedPage);
-
     // it check whether if they actually have made changes, if so,
+
     if (changes != "") {
-      if (selectedPage == "home") {
-        // it save the changes on the local storage according to its key:
-        localStorage.setItem("homeData", changes);
+      localStorage.setItem(`${selectedPage}Data`, changes);
 
-        // here after getting the saved data from the local storage, it passes it to the rendering function
-        const homeData = JSON.parse(changes);
-
-        // here what basically happens is -> once the data has been chnaged im calling the fucntion with the data right? but the thing is it doesn't really matter because in the top of the code fetchDepartmentData() is initiallized and that's what actually gets called before the renderDepartement, so instead of calling the renderDepartment function i can also just do a fetchDepartment() and that also should work properly
-        renderDepartmentData(homeData);
-      }
-      if (selectedPage == "department") {
-        localStorage.setItem("departmentData", changes);
-        const departmentData = JSON.parse(changes);
-        renderDepartmentData(departmentData);
-      }
-      if (selectedPage == "introduction") {
-        localStorage.setItem("introductionData", changes);
-        const introductionData = JSON.parse(changes);
-        renderAnimalData(introductionData);
-      }
-      if (selectedPage == "animals") {
-        localStorage.setItem("animalData", changes);
-        const animalsData = JSON.parse(changes);
-        renderAnimalData(animalsData);
-      }
-      if (selectedPage == "leopard") {
-        localStorage.setItem("leopardData", changes);
-        const leopardData = JSON.parse(changes);
-        renderLeopardData(leopardData);
-      }
-      if (selectedPage == "yala") {
-        localStorage.setItem("yalaData", changes);
-        const yalaData = JSON.parse(changes);
-        renderYalaData(yalaData);
-      }
-      if (selectedPage == "wilpattu") {
-        localStorage.setItem("wilpattuData", changes);
-        const wilpattuData = JSON.parse(changes);
-        renderWilpattuData(wilpattuData);
-      }
+      // we can also do it like this, but its a bit heptic
+      // it save the changes on the local storage according to its key:
+      // here after getting the saved data from the local storage, it passes it to the rendering function
+      // here what basically happens is -> once the data has been chnaged im calling the fucntion with the data right? but the thing is it doesn't really matter because in the top of the code fetchDepartmentData() is initiallized and that's what actually gets called before the renderDepartement, so instead of calling the renderDepartment function i can also just do a fetchDepartment() and that also should work properly
+      // if (selectedPage == "home") {
+      //   localStorage.setItem("homeData", changes);
+      //   const homeData = JSON.parse(changes);
+      //   renderDepartmentData(homeData);
+      // }
     } else {
       prompt("dont do that");
     }
@@ -1113,15 +1061,43 @@ if (newsLetterSubmitBtn)
   });
 
 const contenteEditor = document.querySelector(".login-button");
-if (contenteEditor && JSON.parse(localStorage.getItem("account"))) {
+if (contenteEditor && localStorage.getItem("account")) {
   contenteEditor.classList.remove("display-none");
 
   contenteEditor.addEventListener("click", function (e) {
     e.preventDefault();
-    window.open(
-      "/other-pages/contentEditor.html",
-      "popup",
-      "width=750,height=650"
-    );
+    if (localStorage.getItem("account") == null) {
+      alert("Please login!");
+    } else {
+      window.open(
+        "/other-pages/contentEditor.html",
+        "popup",
+        "width=750,height=650"
+      );
+    }
   });
 }
+
+const logout = document.querySelector(".logoutbtn");
+if (logout)
+  logout.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let form = document.querySelector(".container");
+    let navBar = document.querySelector(".nav-bar");
+    let dashBoardContainer = document.querySelector(".dashboard");
+    let subscriptionContainer = document.querySelector(
+      ".subscription-container"
+    );
+
+    navBar.classList.add("display-none");
+    dashBoardContainer.classList.add("display-none");
+    form.classList.remove("display-none");
+
+    if (subscriptionContainer)
+      subscriptionContainer.classList.add("display-none");
+
+    localStorage.removeItem("account");
+
+    window.location.href = "/index.html";
+  });

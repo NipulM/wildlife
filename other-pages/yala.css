@@ -94,6 +94,37 @@ hr {
   display: none;
 }
 
+.display-none {
+  display: none;
+}
+
+.login-button {
+  position: absolute;
+  bottom: -4%;
+  left: 1%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+  margin: 20px;
+  border-radius: 5px;
+  margin-left: 35px;
+  cursor: pointer;
+}
+
+.login-button a {
+  color: var(--before-hover-a-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login-button img {
+  height: 50px;
+}
+
 /* .centered-text-yala {
   position: absolute;
   width: 100%;
@@ -378,6 +409,13 @@ hr {
   color: rgb(124, 124, 139);
 }
 
+@media only screen and (max-width: 607px) {
+  .login-button {
+    /* bottom: 10px; */
+    left: 15px;
+  }
+}
+
 @media only screen and (max-width: 429px) {
   .newsletter-form-container {
     width: 360px;
@@ -394,7 +432,7 @@ hr {
   }
 }
 
-@media only screen and (max-width: 935px) {
+@media only screen and (max-width: 1000px) {
   .nav-bar {
     display: block;
     border-radius: 0px 0px 15px 15px;
